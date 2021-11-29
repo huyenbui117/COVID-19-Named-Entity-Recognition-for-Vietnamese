@@ -1,0 +1,3 @@
+"Bệnh nhân BN-946401 là NKH, thường trú tại thôn Thành Trung, xã Phồn Xương, huyện Yên Thế, tỉnh Bắc Giang."
+"Bệnh nhân đã thực hiện test nhanh COVID-19 tại Trung tâm Y tế huyện Hữu Lũng cho kết quả nghi ngờ ngày 03/11/2021."
+"Ngày 04/11/2021 có kết quả xét nghiệm dương tính với SARS-CoV2 của Bệnh viện Đa khoa tỉnh Lạng Sơn."
