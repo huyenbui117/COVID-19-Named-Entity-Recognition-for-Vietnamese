@@ -41,16 +41,16 @@ class NER(TokenClassificationTask):
 
     def write_predictions_to_file(self, writer: TextIO, test_input_reader: TextIO, preds_list: List):
         example_id = 0
-        # for line in test_input_reader:
-        #     if line.startswith("-DOCSTART-") or line == "" or line == "\n":
-        #         writer.write(line)
-        #         if not preds_list[example_id]:
-        #             example_id += 1
-        #     elif preds_list[example_id]:
-        #         output_line = line.split()[0] + " " + preds_list[example_id].pop(0) + "\n"
-        #         writer.write(output_line)
-        #     else:
-        #         logger.warning("Maximum sequence length exceeded: No prediction for '%s'.", line.split()[0])
+        for line in test_input_reader:
+            if line.startswith("-DOCSTART-") or line == "" or line == "\n":
+                writer.write(line)
+                if not preds_list[example_id]:
+                    example_id += 1
+            elif preds_list[example_id]:
+                output_line = line.split()[0] + " " + preds_list[example_id].pop(0) + "\n"
+                writer.write(output_line)
+            else:
+                logger.warning("Maximum sequence length exceeded: No prediction for '%s'.", line.split()[0])
 
     def get_labels(self, path: str) -> List[str]:
         return ["O", "B-ORGANIZATION", "O-ORGANIZATION", "I-ORGANIZATION",
