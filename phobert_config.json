@@ -1,5 +1,6 @@
 {
     "data_dir": "D:/PhoNER_COVID19/PhoNER_COVID19/data/word",
+    "cahe_dir": "cache",
     "model_name_or_path": "huyenbui117/Covid19_phoNER",
     "output_dir": "test-bert-ner",
     "max_seq_length": 128,
@@ -8,7 +9,7 @@
     "save_steps": 750,
     "seed": 1,
     "do_train": false   ,
-    "do_eval": true,
-    "do_predict": false,
+    "do_eval": false,
+    "do_predict": true,
     "eval_steps ": 10
 }

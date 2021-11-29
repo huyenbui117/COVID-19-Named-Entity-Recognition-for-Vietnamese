@@ -6,15 +6,13 @@ from importlib import import_module
 from typing import Dict, List, Optional, Tuple
 
 import numpy as np
+import transformers
 from seqeval.metrics import accuracy_score, f1_score, precision_score, recall_score
 from torch import nn
-
-import transformers
 from transformers import (
     AutoConfig,
     AutoModelForTokenClassification,
     AutoTokenizer,
-    DataCollatorWithPadding,
     EvalPrediction,
     HfArgumentParser,
     Trainer,
@@ -22,9 +20,11 @@ from transformers import (
     set_seed,
 )
 from transformers.trainer_utils import is_main_process
-from utils_ner import Split, TokenClassificationDataset, TokenClassificationTask
 
-
+from tasks import NER
+from utils_ner import Split, TokenClassificationDataset
+from pandas import DataFrame
+import pandas as pd
 logger = logging.getLogger(__name__)
 
 
@@ -40,15 +40,6 @@ class ModelArguments:
     config_name: Optional[str] = field(
         default=None, metadata={"help": "Pretrained config name or path if not the same as model_name"}
     )
-    task_type: Optional[str] = field(
-        default="NER", metadata={"help": "Task type to fine tune in training (e.g. NER, POS, etc)"}
-    )
-    tokenizer_name: Optional[str] = field(
-        default=None, metadata={"help": "Pretrained tokenizer name or path if not the same as model_name"}
-    )
-    use_fast: bool = field(default=False, metadata={"help": "Set this flag to use fast tokenization."})
-    # If you want to tweak more attributes on your tokenizer, you should do it in a distinct script,
-    # or just modify its tokenizer_config.json.
     cache_dir: Optional[str] = field(
         default=None,
         metadata={"help": "Where do you want to store the pretrained models downloaded from huggingface.co"},
@@ -72,7 +63,7 @@ class DataTrainingArguments:
         default=128,
         metadata={
             "help": "The maximum total input sequence length after tokenization. Sequences longer "
-            "than this will be truncated, sequences shorter will be padded."
+                    "than this will be truncated, sequences shorter will be padded."
         },
     )
     overwrite_cache: bool = field(
@@ -94,24 +85,17 @@ def main():
         model_args, data_args, training_args = parser.parse_args_into_dataclasses()
 
     if (
-        os.path.exists(training_args.output_dir)
-        and os.listdir(training_args.output_dir)
-        and training_args.do_train
-        and not training_args.overwrite_output_dir
+            os.path.exists(training_args.output_dir)
+            and os.listdir(training_args.output_dir)
+            and training_args.do_train
+            and not training_args.overwrite_output_dir
     ):
         raise ValueError(
             f"Output directory ({training_args.output_dir}) already exists and is not empty. Use --overwrite_output_dir to overcome."
         )
 
     module = import_module("tasks")
-    try:
-        token_classification_task_clazz = getattr(module, model_args.task_type)
-        token_classification_task: TokenClassificationTask = token_classification_task_clazz()
-    except AttributeError:
-        raise ValueError(
-            f"Task {model_args.task_type} needs to be defined as a TokenClassificationTask subclass in {module}. "
-            f"Available tasks classes are: {TokenClassificationTask.__subclasses__()}"
-        )
+    ner = NER()
 
     # Setup logging
     logging.basicConfig(
@@ -137,8 +121,8 @@ def main():
     # Set seed
     set_seed(training_args.seed)
 
-    # Prepare CONLL-2003 task
-    labels = token_classification_task.get_labels(data_args.labels)
+    # Prepare label
+    labels = ner.get_labels(data_args.labels)
     label_map: Dict[int, str] = {i: label for i, label in enumerate(labels)}
     num_labels = len(labels)
 
@@ -156,9 +140,8 @@ def main():
         cache_dir=model_args.cache_dir,
     )
     tokenizer = AutoTokenizer.from_pretrained(
-        model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path,
-        cache_dir=model_args.cache_dir,
-        use_fast=model_args.use_fast,
+        model_args.model_name_or_path,
+        cache_dir=model_args.cache_dir
     )
     model = AutoModelForTokenClassification.from_pretrained(
         model_args.model_name_or_path,
@@ -170,7 +153,7 @@ def main():
     # Get datasets
     train_dataset = (
         TokenClassificationDataset(
-            token_classification_task=token_classification_task,
+            token_classification_task=ner,
             data_dir=data_args.data_dir,
             tokenizer=tokenizer,
             labels=labels,
@@ -184,7 +167,7 @@ def main():
     )
     eval_dataset = (
         TokenClassificationDataset(
-            token_classification_task=token_classification_task,
+            token_classification_task=ner,
             data_dir=data_args.data_dir,
             tokenizer=tokenizer,
             labels=labels,
@@ -217,13 +200,20 @@ def main():
         preds_list, out_label_list = align_predictions(p.predictions, p.label_ids)
         return {
             "accuracy_score": accuracy_score(out_label_list, preds_list),
-            "precision": precision_score(out_label_list, preds_list),
-            "recall": recall_score(out_label_list, preds_list),
-            "f1": f1_score(out_label_list, preds_list),
+            "precision": precision_score(out_label_list, preds_list, average=None),
+            "recall": recall_score(out_label_list, preds_list, average=None),
+            "f1": f1_score(out_label_list, preds_list, average=None),
+            "micro_precision": precision_score(out_label_list, preds_list),
+            "micro_recall": recall_score(out_label_list, preds_list),
+            "micro_f1": f1_score(out_label_list, preds_list),
+            "macro_precision": precision_score(out_label_list, preds_list, average="macro"),
+            "macro_recall": recall_score(out_label_list, preds_list, average="macro"),
+            "maxro_f1": f1_score(out_label_list, preds_list, average="macro"),
         }
 
-    # Data collator
-    data_collator = DataCollatorWithPadding(tokenizer, pad_to_multiple_of=8) if training_args.fp16 else None
+    #
+    # # Data collator
+    # data_collator = DataCollatorWithPadding(tokenizer, pad_to_multiple_of=8) if training_args.fp16 else None
 
     # Initialize our Trainer
     trainer = Trainer(
@@ -232,7 +222,7 @@ def main():
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         compute_metrics=compute_metrics,
-        data_collator=data_collator,
+        data_collator=None,
     )
 
     # Training
@@ -266,7 +256,7 @@ def main():
     # Predict
     if training_args.do_predict:
         test_dataset = TokenClassificationDataset(
-            token_classification_task=token_classification_task,
+            token_classification_task=ner,
             data_dir=data_args.data_dir,
             tokenizer=tokenizer,
             labels=labels,
@@ -288,11 +278,13 @@ def main():
 
         # Save predictions
         output_test_predictions_file = os.path.join(training_args.output_dir, "test_predictions.txt")
-        if trainer.is_world_process_zero():
-            with open(output_test_predictions_file, "w") as writer:
-                with open(os.path.join(data_args.data_dir, "test.txt"), "r") as f:
-                    token_classification_task.write_predictions_to_file(writer, f, preds_list)
-
+        # if trainer.is_world_process_zero():
+        #     with open(output_test_predictions_file, "w",ncoding="utf-8") as writer:
+        #         with open(os.path.join(data_args.data_dir, "test.txt", ), "r", encoding="utf-8") as f:
+        #             ner.write_predictions_to_file(writer, f, preds_list)
+        df = DataFrame(preds_list)
+        print(df)
+        df.to_csv(output_test_predictions_file)
     return results
 
 
@@ -303,3 +295,4 @@ def _mp_fn(index):
 
 if __name__ == "__main__":
     main()
+
