@@ -9,7 +9,7 @@
     "save_steps": 750,
     "seed": 1,
     "do_train": false   ,
-    "do_eval": false,
-    "do_predict": true,
+    "do_eval": true,
+    "do_predict": false,
     "eval_steps ": 10
 }
