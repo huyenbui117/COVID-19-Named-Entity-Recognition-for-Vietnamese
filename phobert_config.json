@@ -2,7 +2,7 @@
     "data_dir": "D:/PhoNER_COVID19/PhoNER_COVID19/data/word",
     "cahe_dir": "cache",
     "model_name_or_path": "huyenbui117/Covid19_phoNER",
-    "output_dir": "strict",
+    "output_dir": "suffix",
     "max_seq_length": 128,
     "num_train_epochs": 5,
     "per_device_train_batch_size": 32,
