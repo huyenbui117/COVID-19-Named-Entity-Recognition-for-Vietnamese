@@ -7,7 +7,9 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import transformers
-from seqeval.metrics import accuracy_score, f1_score, precision_score, recall_score
+# from seqeval.metrics import accuracy_score, f1_score, precision_score, recall_score
+# from sklearn.metrics import precision_recall_fscore_support
+from seqeval.metrics import classification_report
 from torch import nn
 from transformers import (
     AutoConfig,
@@ -25,6 +27,7 @@ from tasks import NER
 from utils_ner import Split, TokenClassificationDataset
 from pandas import DataFrame
 import pandas as pd
+
 logger = logging.getLogger(__name__)
 
 
@@ -198,18 +201,9 @@ def main():
 
     def compute_metrics(p: EvalPrediction) -> Dict:
         preds_list, out_label_list = align_predictions(p.predictions, p.label_ids)
-        return {
-            "accuracy_score": accuracy_score(out_label_list, preds_list),
-            "precision": precision_score(out_label_list, preds_list, average=None),
-            "recall": recall_score(out_label_list, preds_list, average=None),
-            "f1": f1_score(out_label_list, preds_list, average=None),
-            "micro_precision": precision_score(out_label_list, preds_list),
-            "micro_recall": recall_score(out_label_list, preds_list),
-            "micro_f1": f1_score(out_label_list, preds_list),
-            "macro_precision": precision_score(out_label_list, preds_list, average="macro"),
-            "macro_recall": recall_score(out_label_list, preds_list, average="macro"),
-            "maxro_f1": f1_score(out_label_list, preds_list, average="macro"),
-        }
+        report = classification_report(y_true=out_label_list, y_pred=preds_list, suffix=True)
+        return {"report":report}
+
 
     #
     # # Data collator
@@ -279,7 +273,7 @@ def main():
         # Save predictions
         output_test_predictions_file = os.path.join(training_args.output_dir, "test_predictions.txt")
         if trainer.is_world_process_zero():
-            with open(output_test_predictions_file, "w",encoding="utf-8") as writer:
+            with open(output_test_predictions_file, "w", encoding="utf-8") as writer:
                 with open(os.path.join(data_args.data_dir, "test.txt", ), "r", encoding="utf-8") as f:
                     ner.write_predictions_to_file(writer, f, preds_list)
         # df = DataFrame(preds_list)
@@ -295,4 +289,3 @@ def _mp_fn(index):
 
 if __name__ == "__main__":
     main()
-

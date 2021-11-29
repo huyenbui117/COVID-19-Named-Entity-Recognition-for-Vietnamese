@@ -1,0 +1,13 @@
+test_loss = 0.08466359227895737
+test_report =               precision    recall  f1-score   support
+
+           B       0.97      0.97      0.97     11599
+           I       0.95      0.93      0.94      6969
+
+   micro avg       0.96      0.95      0.96     18568
+   macro avg       0.96      0.95      0.95     18568
+weighted avg       0.96      0.95      0.96     18568
+
+test_runtime = 767.4659
+test_samples_per_second = 3.909
+test_steps_per_second = 0.489

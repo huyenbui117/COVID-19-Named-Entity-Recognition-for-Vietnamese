@@ -1,0 +1,13 @@
+eval_loss = 0.07199134677648544
+eval_report =               precision    recall  f1-score   support
+
+           B       0.97      0.97      0.97      7392
+           I       0.96      0.95      0.95      4460
+
+   micro avg       0.97      0.96      0.97     11852
+   macro avg       0.97      0.96      0.96     11852
+weighted avg       0.97      0.96      0.97     11852
+
+eval_runtime = 512.6423
+eval_samples_per_second = 3.901
+eval_steps_per_second = 0.488

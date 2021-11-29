@@ -16,6 +16,6 @@ SYMPTOM_AND_DISEASE       0.88      0.89      0.89       766
           macro avg       0.94      0.95      0.94      7465
        weighted avg       0.95      0.96      0.96      7465
 
-eval_runtime = 503.2501
-eval_samples_per_second = 3.974
-eval_steps_per_second = 0.497
+eval_runtime = 514.3832
+eval_samples_per_second = 3.888
+eval_steps_per_second = 0.486

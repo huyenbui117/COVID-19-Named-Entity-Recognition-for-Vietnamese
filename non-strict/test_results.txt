@@ -1,0 +1,21 @@
+test_loss = 0.08466359227895737
+test_report =                      precision    recall  f1-score   support
+
+                AGE       0.96      0.97      0.96       579
+               DATE       0.97      0.99      0.98      1652
+             GENDER       0.97      0.98      0.97       460
+                JOB       0.71      0.76      0.73       173
+           LOCATION       0.95      0.95      0.95      4435
+               NAME       0.90      0.92      0.91       318
+       ORGANIZATION       0.86      0.91      0.89       771
+         PATIENT_ID       0.98      0.99      0.98      1995
+SYMPTOM_AND_DISEASE       0.87      0.86      0.87      1136
+     TRANSPORTATION       0.95      0.96      0.96       193
+
+          micro avg       0.94      0.95      0.94     11712
+          macro avg       0.91      0.93      0.92     11712
+       weighted avg       0.94      0.95      0.94     11712
+
+test_runtime = 761.2397
+test_samples_per_second = 3.941
+test_steps_per_second = 0.493
