@@ -3,3 +3,6 @@
 /transformers/
 /bert-ner/
 /phobert-ner/runs/
+/label/runs/
+/suffix/runs/
+/vncorenlp/
