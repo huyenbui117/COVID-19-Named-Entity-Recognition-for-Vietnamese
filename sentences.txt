@@ -1,3 +1,17 @@
-"Bệnh nhân BN-946401 là NKH, thường trú tại thôn Thành Trung, xã Phồn Xương, huyện Yên Thế, tỉnh Bắc Giang."
-"Bệnh nhân đã thực hiện test nhanh COVID-19 tại Trung tâm Y tế huyện Hữu Lũng cho kết quả nghi ngờ ngày 03/11/2021."
-"Ngày 04/11/2021 có kết quả xét nghiệm dương tính với SARS-CoV2 của Bệnh viện Đa khoa tỉnh Lạng Sơn."
+Bệnh nhân số 946401 tên là NHT thường trú tại thôn Thành Trung, xã Phồn Xương, huyện Yên Thế, tỉnh Bắc Giang, thực hiện test nhanh COVID-19 tại Trung tâm Y tế huyện Hữu Lũng cho kết quả nghi ngờ ngày 03/11/2021. Ngày 04/11/2021 có kết quả xét nghiệm dương tính với SARS-CoV2 của Bệnh viện Đa khoa tỉnh Lạng Sơn. Quá trình di chuyển tại Lạng Sơn cụ thể như sau:
+- Khoảng 7h30 ngày 01/11/2021 thuê taxi cùng với bạn từ thôn Thành Trung,  xã Phồn Xương, huyện Yên Thế, tỉnh Bắc Giang lên Lạng Sơn.
+- Khoảng 8h40 đến 9h10 ăn sáng tại quán phở tại khu Tân Mỹ 1, thị trấn Hữu Lũng.
+- Khoảng 9h10 – 19h30 thuê phòng nghỉ tại khách sạn Thương mại Hữu Lũng nghỉ một mình một phòng.
+- Khoảng 19h30 đến 20h00 đi ăn cơm một tình tại quán cơ cổng chợ Mẹt. Sau đó về phòng nghỉ tại khách sạn Thương mại Hữu Lũng.
+- Khoảng 7h00 đến 7h40, ngày 02/11/2021 ăn sáng tại quán gốc cây Xà cừ.
+- Khoảng 7h40 đến 8h10 uống nước tại quán trà đá bà Dính. Sau đó về phòng trọ gặp đồng nghiệp từ Yên Thế lên để cùng đi liên hệ công tác.
+- Khoảng 8h30 đến 9h00 đến liên hệ công tác tại Hội người cao tuổi, UBND huyện Hữu Lũng. Sau đó trở về khách sạn.
+- Khoảng 10h00 thuê xe ôm đến ngã tư Làng Gai bắt xe lên thành phố Lạng Sơn.
+- Khoảng 11h30 đến 12h30 bắt taxi đến đường Ngô Gia Tự, phường Đông Kinh để đồng nghiệp lấy công văn, sau đó ăn trưa tại quán cơm Thắng Đầu to, khu Hàng Bát phường Hoàng Văn Thụ.
+- Khoảng 12h30 đến 13h30 thuê nhà nghỉ Anh Đào nghỉ trưa.
+- Khoảng 13h30 đến 14h00 bắt xe ô tô vào Công an huyện Lộc Bình  làm thủ tục nộp phạt vi phạm điều khiển xe gắn máy.
+- Khoảng 14h đến 14h15 nộp phạt tại Kho Bạc, huyện Lộc Bình. Sau đó đến nhà người quen tại Lộc Bình.
+- Khoảng 15h30 phút quay lại Công an huyện Lộc Bình nộp chứng từ thu tiền, lấy lại giấy tờ và xe máy, xuất phát về nhà nghỉ Anh Đào, thành phố Lạng Sơn. Trên đường đi có bơm hơi tại quán đầu thị trấn Lộc Bình và vá xăm tại quán đầu thành phố Lạng Sơn.
+- Khoảng 19h00 bắt xe ô tô từ  thành phố Lạng Sơn về ngã tư Làng Gai, thị trấn Hữu Lũng. Sau đó bắt xe ôm về khách sạn Thương mại Hữu Lũng, nghỉ cùng đồng nghiệp.
+- Khoảng 7h00 ngày 03/11/2021 đi bộ đến Trung tâm Y tế huyện Hữu Lũng thực hiện test nhanh cho kết quả nghi ngờ và được cách ly ngay tại Trung tâm Y tế huyện.
+Những ai đã từng tiếp xúc với bệnh nhân BN-946401 hoặc có mặt tại các địa điểm trong thời gian trên cần khai báo y tế với cơ quan y tế gần nhất để được tư vấn hỗ trợ thực hiện các biện pháp phòng chống dịch bệnh COVID-19 để bảo vệ sức khỏe cho bản thân và gia đình của mình.
