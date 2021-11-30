@@ -4,13 +4,7 @@
 
 ## Methods
 
-???
-
-### Feature selection
-
-
-### Model
-
+Use PhoBERT transformer to fine-tune for State-of-the-art performance
 
 ## Setup
 
