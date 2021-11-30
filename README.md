@@ -4,6 +4,7 @@
 
 ## Methods
 
+???
 
 ### Feature selection
 
@@ -88,27 +89,14 @@ for sentence in sentences:
   - "eval_steps ": int
 - For more training argument, you can see them [here](https://huggingface.co/transformers/main_classes/trainer.html#trainingarguments)
 
-
-## Training
+## Execution
 
 ```
-
-py evaluate.py 
+py main.py phobert_config.json 
 ```
-
-## Evaluation
-
-
 
 ## Inference
 
-- Run
-
-```shell
-py main.py
-```
-
-- Example output:
-
-- Output are then stored in 
+- Example output: 
+- Output are then stored in:  
 
