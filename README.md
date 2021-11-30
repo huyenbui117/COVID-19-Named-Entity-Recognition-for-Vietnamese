@@ -27,7 +27,7 @@ py -m pip install jupyter
 py -m pip install seqeval //conda install seqeval
 ```
 
-### Notes
+## Notes
 In case the input texts are raw, i.e. without word segmentation, a word segmenter must be applied to produce word-segmented texts before feeding to PhoBERT. As PhoBERT employed the RDRSegmenter from VnCoreNLP to pre-process the pre-training data (including Vietnamese tone normalization and word and sentence segmentation), it is recommended to also use the same word segmenter for PhoBERT-based downstream applications w.r.t. the input raw texts.
 
 ### Installation
