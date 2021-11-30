@@ -1,55 +1,6 @@
 # COVID-19 Named Entity Recognition for Vietnamese
 
-- [Dataset](https://github.com/phuonglt26/Vietnamese-E-commerce-Dataset)
-## Xử lý data:
-
-- In phobert_config.json:
-  - "data_dir": The input data dir. Should contain the .txt files for a CoNLL-2003-formatted task
-  - "cahe_dir": Where do you want to store the pretrained models downloaded from huggingface.co
-  - "model_name_or_path": Path to pretrained model or model identifier from huggingface.co/models
-  - "output_dir": suffix,
-  - "max_seq_length": The maximum total input sequence length after tokenization. Sequences longer than this will be truncated, sequences shorter will be padded
-  - "num_train_epochs": 5,
-  - "per_device_train_batch_size": 32,
-  - "save_steps": 750,
-  - "seed": 1,
-  - "do_train": false,
-  - "do_eval": true,
-  - "do_predict": true,
-  - "eval_steps ": 10
-- class ModelArguments (Arguments pertaining to which model/config/tokenizer we are going to fine-tune from.)
-
-
-    model_name_or_path: str = field(
-        metadata={"help": "Path to pretrained model or model identifier from huggingface.co/models"}
-    )
-    config_name: Optional[str] = field(
-        default=None, metadata={"help": "Pretrained config name or path if not the same as model_name"}
-    )
-    cache_dir: Optional[str] = field(
-        default=None,
-        metadata={"help": "Where do you want to store the pretrained models downloaded from huggingface.co"},
-    )
-
-- class DataTrainingArguments (Arguments pertaining to what data we are going to input our model for training and eval)
-
-    data_dir: str = field(
-        metadata={"help": "The input data dir. Should contain the .txt files for a CoNLL-2003-formatted task."}
-    )
-    labels: Optional[str] = field(
-        default=None,
-        metadata={"help": "Path to a file containing all labels. If not specified, CoNLL-2003 labels are used."},
-    )
-    max_seq_length: int = field(
-        default=128,
-        metadata={
-            "help": "The maximum total input sequence length after tokenization. Sequences longer "
-                    "than this will be truncated, sequences shorter will be padded."
-        },
-    )
-    overwrite_cache: bool = field(
-        default=False, metadata={"help": "Overwrite the cached training and evaluation sets"}
-    )
+- [Dataset](https://github.com/VinAIResearch/PhoNER_COVID19)
 
 ## Methods
 
@@ -119,9 +70,29 @@ for sentence in sentences:
 	print(" ".join(sentence))
 ```
 
+## Config:
+
+- In phobert_config.json: 
+  - "data_dir": The input data dir. Should contain the .txt files for a CoNLL-2003-formatted task
+  - "cahe_dir": Where do you want to store the pretrained models downloaded from huggingface.co
+  - "model_name_or_path": Path to pretrained model or model identifier from huggingface.co/models
+  - "output_dir": The output directory where the model predictions and checkpoints will be written,
+  - "max_seq_length": The maximum total input sequence length after tokenization. Sequences longer than this will be truncated, sequences shorter will be padded
+  - "num_train_epochs": int,
+  - "per_device_train_batch_size": int,
+  - "save_steps": int,
+  - "seed": int,
+  - "do_train": Whether to run training or not. This argument is not directly used by Trainer, it’s intended to be used by your training/evaluation scripts instead,
+  - "do_eval": Whether to run evaluation on the validation set or not. Will be set to True if evaluation_strategy is different from "no". This argument is not directly used by Trainer, it’s intended to be used by your training/evaluation scripts instead.,
+  - "do_predict": Whether to run predictions on the test set or not. This argument is not directly used by Trainer, it’s intended to be used by your training/evaluation scripts instead,
+  - "eval_steps ": int
+- For more training argument, you can see them [here](https://huggingface.co/transformers/main_classes/trainer.html#trainingarguments)
+
+
 ## Training
 
-```shell
+```
+
 py evaluate.py 
 ```
 
