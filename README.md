@@ -4,6 +4,7 @@
 
 ## Methods
 
+
 ### Feature selection
 
 
@@ -15,7 +16,7 @@ Download [python 3.8.10](https://www.python.org/downloads/release/python-3810/),
 PATH when download process finished
 
 ```shell
-git clone https://github.com/huyenbui117/CacChuyenDeKHMT
+git clone hhttps://github.com/huyenbui117/COVID19_PhoNER
 ```
 
 In the project directory
