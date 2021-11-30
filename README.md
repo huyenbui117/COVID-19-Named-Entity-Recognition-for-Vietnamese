@@ -13,9 +13,8 @@
 - Bước 2: Word segment câu văn bản trước khi đưa vào PhoBert (do PhoBert yêu cầu)
 - Bước 3: Tokenize bằng bộ Tokenizer của PhoBert. Chú ý rằng khi tokenize ta sẽ thêm 2 token đặc biệt là [CLS] và [SEP] vào đầu và cuối câu.
 - Bước 4: Đưa câu văn bản đã được tokenize vào model kèm theo attention mask.
-+ Mô hình PhoBERT tạo ra các biểu diễn từ từ quá trình ẩn các vị trí token một cách ngẫu nhiên trong câu input và dự báo chính chính từ đó ở output dựa trên bối cảnh là các từ xung quanh.
-
-Như vậy khi đã biết các từ xung quanh, chúng ta hoàn toàn có thể dự báo được từ phù hợp nhất với vị trí đã được masking.
+  - Mô hình PhoBERT tạo ra các biểu diễn từ từ quá trình ẩn các vị trí token một cách ngẫu nhiên trong câu input và dự báo chính chính từ đó ở output dựa trên bối cảnh là các từ xung quanh
+  - Như vậy khi đã biết các từ xung quanh, chúng ta hoàn toàn có thể dự báo được từ phù hợp nhất với vị trí đã được masking.
 - Bước 5: Lấy output đầu ra và lấy vector output đầu tiên (chính là ở vị trí token đặc biệt [CLS]) làm đặc trưng cho câu để train hoặc để predict (tuỳ phase).
 
 3. Một vài ứng dụng chính của PhoBERT:
