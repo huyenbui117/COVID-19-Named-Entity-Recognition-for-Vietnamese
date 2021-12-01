@@ -4,7 +4,7 @@
 
 ## Methods
 
-Use PhoBERT transformer to fine-tune for State-of-the-art performance
+We use PhoBERT - an improved version of RoBERTa to fine-tune for state-of-the-art performance
 
 ## Setup
 
