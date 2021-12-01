@@ -83,16 +83,57 @@ for sentence in sentences:
   - "eval_steps ": int
 - For more training argument, you can see them [here](https://huggingface.co/transformers/main_classes/trainer.html#trainingarguments)
 
-## Execution
+## Execution (
 
+- Train, evaluate, test
 ```
 py main.py phobert_config.json 
 ```
+- Predict
+```
+py phoNER_predict.ipynb
+```
 
-## Inference
+## Inference: Run phoNER_predict.ipynb
 
-- Example output: 
-- Output are then stored in: suffix/test_result.txt
+- Example output: (this is a sentence from a long paragraph input)
+```
+tensor([[0, 0, 0, 0, 0, 8, 9, 9, 0, 0, 0, 0, 0, 0, 4, 5, 5, 0, 4, 5, 5, 5, 0, 4,
+         5, 0, 4, 5, 0, 4, 0, 0]])
+('<s>', 'O')
+('-', 'O')
+('Khoảng', 'O')
+('7h30', 'O')
+('ngày', 'O')
+('01/@@', 'B-DATE')
+('11/@@', 'I-DATE')
+('2021', 'I-DATE')
+('thuê', 'O')
+('taxi', 'O')
+('cùng', 'O')
+('với', 'O')
+('bạn', 'O')
+('từ', 'O')
+('thôn', 'B-LOCATION')
+('Thành', 'I-LOCATION')
+('Trung', 'I-LOCATION')
+(',', 'O')
+('xã', 'B-LOCATION')
+('Ph@@', 'I-LOCATION')
+('ồn_@@', 'I-LOCATION')
+('Xương', 'I-LOCATION')
+(',', 'O')
+('huyện', 'B-LOCATION')
+('Yên_Thế', 'I-LOCATION')
+(',', 'O')
+('tỉnh', 'B-LOCATION')
+('Bắc_Giang', 'I-LOCATION')
+('lên', 'O')
+('Lạng_Sơn', 'B-LOCATION')
+('.', 'O')
+('</s>', 'O')
+```
+- Output are then stored in output_dir = suffix/test_result.txt
 ```
 test_loss = 0.08466359227895737
 test_report =               precision    recall  f1-score   support
