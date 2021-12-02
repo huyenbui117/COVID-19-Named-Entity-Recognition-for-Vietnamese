@@ -99,13 +99,7 @@ class TokenClassificationTask:
             mask_padding_with_zero=True,
     ) -> List[InputFeatures]:
         """Loads a data file into a list of `InputFeatures`
-        `cls_token_at_end` define the location of the CLS token:
-            - False (Default, BERT/XLM pattern): [CLS] + A + [SEP] + B + [SEP]
-            - True (XLNet/GPT pattern): A + [SEP] + B + [SEP] + [CLS]
-        `cls_token_segment_id` define the segment id associated to the CLS token (0 for BERT, 2 for XLNet)
         """
-        # TODO clean up all this to leverage built-in features of tokenizers
-
         label_map = {label: i for i, label in enumerate(label_list)}
 
         features = []
@@ -244,7 +238,6 @@ class TokenClassificationDataset(Dataset):
             else:
                 logger.info(f"Creating features from dataset file at {data_dir}")
                 examples = token_classification_task.read_examples_from_file(data_dir, mode)
-                # TODO clean up all this to leverage built-in features of tokenizers
                 self.features = token_classification_task.convert_to_features(
                     examples,
                     labels,
