@@ -201,7 +201,7 @@ def main():
 
     def compute_metrics(p: EvalPrediction) -> Dict:
         preds_list, out_label_list = align_predictions(p.predictions, p.label_ids)
-        report = classification_report(y_true=out_label_list, y_pred=preds_list, suffix=True)
+        report = classification_report(y_true=out_label_list, y_pred=preds_list)
         return {"report":report}
 
 
