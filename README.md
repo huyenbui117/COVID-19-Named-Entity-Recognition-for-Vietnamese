@@ -91,6 +91,13 @@ py main.py phobert_config.json
 
 ## Inference
 
-- Example output: 
-- Output are then stored in:  
+- Start the server:
+
+```shell
+uvicorn api:app --reload
+```
+
+- Go to [localhost:8000/docs](http://localhost:8000/docs), click `POST` &rarr; `Try it out` and try to upload data as
+  .`txt` file formatted as [sentences.txt](sentences.txt)
+- Click `Execute` to get results
 
