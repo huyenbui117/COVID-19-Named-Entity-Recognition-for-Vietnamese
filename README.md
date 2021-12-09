@@ -101,12 +101,3 @@ uvicorn api:app --reload
 - Go to [localhost:8000/docs](http://localhost:8000/docs), click `POST` &rarr; `Try it out` and try to upload data as
   .`txt` file formatted as [sentences.txt](sentences.txt)
 - Click `Execute` to get results
-
-   micro avg       0.96      0.95      0.96     18568
-   macro avg       0.96      0.95      0.95     18568
-weighted avg       0.96      0.95      0.96     18568
-
-test_runtime = 767.4659
-test_samples_per_second = 3.909
-test_steps_per_second = 0.489
-```
