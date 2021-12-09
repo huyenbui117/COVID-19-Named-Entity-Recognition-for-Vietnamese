@@ -4,7 +4,7 @@
 
 ## Methods
 
-Use PhoBERT transformer to fine-tune for State-of-the-art performance
+We use PhoBERT - an improved version of RoBERTa to fine-tune for state-of-the-art performance
 
 ## Setup
 
@@ -85,6 +85,7 @@ for sentence in sentences:
 
 ## Execution
 
+- Train, evaluate, test
 ```
 py main.py phobert_config.json 
 ```
@@ -101,3 +102,11 @@ uvicorn api:app --reload
   .`txt` file formatted as [sentences.txt](sentences.txt)
 - Click `Execute` to get results
 
+   micro avg       0.96      0.95      0.96     18568
+   macro avg       0.96      0.95      0.95     18568
+weighted avg       0.96      0.95      0.96     18568
+
+test_runtime = 767.4659
+test_samples_per_second = 3.909
+test_steps_per_second = 0.489
+```
